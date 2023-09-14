@@ -18,7 +18,11 @@ const EventCard = ({
       {...props}
     >
       <div className="EventCard__imageContainer">
-        <img data-testid="card-image-testid" src={imageSrc} alt={imageAlt} />
+        <img data-testid="card-image-testid" 
+        src={imageSrc} 
+        alt={imageAlt}
+        // onError={() => console.error("Erreur de chargement de l'image")} 
+        />
         <div className="EventCard__label">{label}</div>
       </div>
       <div className="EventCard__descriptionContainer">
