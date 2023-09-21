@@ -11,7 +11,7 @@ const PER_PAGE = 9;
 
 const EventList = () => {
   const { data, error } = useData();
-  const [type, setType] = useState();
+  const [type, setType] = useState("Toutes");
   const [currentPage, setCurrentPage] = useState(1);
   const filteredEvents = (
     (!type
@@ -28,26 +28,17 @@ const EventList = () => {
     }
     return false;
   });
-  const categorieFilter = (events)=>{
-    const filterElements = []
-// le filtre ici
+  const categorieFilter = (events) => {
+    if (type === "Toutes") {
+      // Si "Toutes" est sélectionné, retournez tous les événements.
+      return events || [];
+    }
 
+    // Sinon, filtrez les événements par type.
+    return events?.filter((event) => event.type === type) || [];
+  };
 
-console.log(type);
-
-
-
-if (type) {
-  // Filtrer les événements par type
-  filterElements.push(...events.filter((event) => event.type === type));
-} else {
-  // Si le type n'est pas défini, renvoyer tous les événements
-  filterElements.push(...(events || []));
-}
-
-return filterElements;
-};
-
+  
 
   const changeType = (evtType) => {
     setCurrentPage(1);
