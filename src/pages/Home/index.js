@@ -56,10 +56,15 @@ const Page = () => {
           </ServiceCard>
         </div>
       </section>
+
       <section className="EventsContainer">
         <h2 id="nos-realisations" className="Title">Nos réalisations</h2>
+        
         <EventList />
+
       </section>
+
+
       <section className="PeoplesContainer">
         <h2 id="notre-equipe" className="Title">Notre équipe</h2>
         <p>Une équipe d’experts dédiés à l’ogranisation de vos événements</p>
@@ -96,6 +101,7 @@ const Page = () => {
           />
         </div>
       </section>
+
       <div className="FormContainer" id="contact">
         <h2 className="Title">Contact</h2>
         <Modal
