@@ -13,42 +13,33 @@ const EventList = () => {
   const { data, error } = useData();
   const [type, setType] = useState("Toutes");
   const [currentPage, setCurrentPage] = useState(1);
-  const filteredEvents = (
-    (!type
 
-      ? data?.events
-      : data?.events) || []
-  ).filter((event, index) => {
-
-    if (
-      (currentPage - 1) * PER_PAGE <= index &&
-      PER_PAGE * currentPage > index
-    ) {
-      return true;
-    }
-    return false;
-  });
   const categorieFilter = (events) => {
     if (type === "Toutes") {
-      // Si "Toutes" est sélectionné, retournez tous les événements.
+      // Si "Toutes" est sélectionné, retourne Toutes les catégories événements.
       return events || [];
     }
 
-    // Sinon, filtrez les événements par type.
+    // Sinon, filtre les événements par type.
     return events?.filter((event) => event.type === type) || [];
   };
-
-  
 
   const changeType = (evtType) => {
     setCurrentPage(1);
     setType(evtType);
-    console.log(evtType);
-    
   };
-  const pageNumber = Math.floor((filteredEvents?.length || 0) / PER_PAGE) + 1;
+
+  const allEvents = categorieFilter(data?.events);
+  const pageNumber = Math.ceil(allEvents.length / PER_PAGE);
   const typeList = new Set(data?.events.map((event) => event.type));
-  // console.log(data?.events);
+
+  // Calcule l'indice de début et de fin des événements à afficher pour gerer la pagination
+  const startIndex = (currentPage - 1) * PER_PAGE;
+  const endIndex = startIndex + PER_PAGE;
+
+  // Filtre les événements à afficher sur la page actuelle.
+  const visibleEvents = allEvents.slice(startIndex, endIndex);
+
   return (
     <>
       {error && <div>An error occured</div>}
@@ -61,10 +52,10 @@ const EventList = () => {
             selection={Array.from(typeList)}
             value={type} // Valeur sélectionnée
             onChange={changeType}
-            
           />
           <div id="events" className="ListContainer">
-            {categorieFilter(data?.events).map((event) => (
+            {/* //les evenements filtré sont affiché */}
+            {visibleEvents.map((event) => (
               <Modal key={event.id} Content={<ModalEvent event={event} />}>
                 {({ setIsOpened }) => (
                   <EventCard
@@ -79,7 +70,7 @@ const EventList = () => {
             ))}
           </div>
           <div className="Pagination">
-            {[...Array(pageNumber || 0)].map((_, n) => (
+            {[...Array(pageNumber)].map((_, n) => (
               // eslint-disable-next-line react/no-array-index-key
               <a key={n} href="#events" onClick={() => setCurrentPage(n + 1)}>
                 {n + 1}
