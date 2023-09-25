@@ -5,6 +5,8 @@
   width: 100%;
   max-width: 1440px;
   height: 586px;
+  overflow-x: hidden; //evite le débordement de l'image
+
   .SlideCard {
     width: 100%;
     left: 0;

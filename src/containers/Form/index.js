@@ -4,6 +4,7 @@ import Field, { FIELD_TYPES } from "../../components/Field";
 import Select from "../../components/Select";
 import Button, { BUTTON_TYPES } from "../../components/Button";
 
+// setTime 600 bug console
 const mockContactApi = () => new Promise((resolve) => { setTimeout(resolve, 600); })
 
 const Form = ({ onSuccess, onError }) => {
@@ -13,6 +14,7 @@ const Form = ({ onSuccess, onError }) => {
       evt.preventDefault();
       setSending(true);
       // We try to call mockContactApi
+      // onSuccess sinon Error
       try {
         await mockContactApi();
         setSending(false);
@@ -24,6 +26,7 @@ const Form = ({ onSuccess, onError }) => {
     },
     [onSuccess, onError]
   );
+
   return (
     <form onSubmit={sendContact}>
       <div className="row">

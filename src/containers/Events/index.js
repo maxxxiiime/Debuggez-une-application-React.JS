@@ -53,8 +53,10 @@ const EventList = () => {
             value={type} // Valeur sélectionnée
             onChange={changeType}
           />
+          
+{/* // les evenements filtré sont affiché */}       
           <div id="events" className="ListContainer">
-            {/* //les evenements filtré sont affiché */}
+
             {visibleEvents.map((event) => (
               <Modal key={event.id} Content={<ModalEvent event={event} />}>
                 {({ setIsOpened }) => (
@@ -69,6 +71,7 @@ const EventList = () => {
               </Modal>
             ))}
           </div>
+
           <div className="Pagination">
             {[...Array(pageNumber)].map((_, n) => (
               // eslint-disable-next-line react/no-array-index-key
