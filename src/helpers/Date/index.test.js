@@ -1,7 +1,7 @@
 /**
  * 
  */
-import { screen } from "@testing-library/react";
+
 import {getMonth} from "./index";
 
 describe("Date helper", () => {
@@ -16,7 +16,7 @@ describe("Date helper", () => {
             
         });
        
-        screen.debug()
+
     });
 })
 
