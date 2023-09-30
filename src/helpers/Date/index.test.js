@@ -14,8 +14,12 @@ describe("Date helper", () => {
             const date = new Date("2022-07-08");
             expect(getMonth(date)).toEqual("juillet")
             
-        });
-       
+        }); 
+        it("the function return juillet for 2022-12-08 as date", () => {
+            const date = new Date("2022-12-08");
+            expect(getMonth(date)).toEqual("décembre")
+            
+        }); 
 
     });
 })

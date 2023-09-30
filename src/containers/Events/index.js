@@ -27,6 +27,7 @@ const EventList = () => {
   const changeType = (evtType) => {
     setCurrentPage(1);
     setType(evtType);
+
   };
 
   const allEvents = categorieFilter(data?.events);
@@ -55,7 +56,7 @@ const EventList = () => {
           />
           
 {/* // les evenements filtré sont affiché */}       
-          <div id="events" className="ListContainer">
+          <div id="events" className="ListContainer" data-testid="listEventsTest">
 
             {visibleEvents.map((event) => (
               <Modal key={event.id} Content={<ModalEvent event={event} />}>
