@@ -41,6 +41,8 @@ const EventList = () => {
   // Filtre les événements à afficher sur la page actuelle.
   const visibleEvents = allEvents.slice(startIndex, endIndex);
 
+  console.log(visibleEvents)
+  console.log(allEvents)
   return (
     <>
       {error && <div>An error occured</div>}
